@@ -1,14 +1,18 @@
 <p>Hola Mundo</p>
 <router-outlet></router-outlet>
 <h2>Datos de la Película</h2>
-<div *ngFor="let pelicula of peliculas; let index =index" class="pelicula-contenedor">
-<div>
- Película {{index}} :  {{pelicula.titulo}}
+<div *ngIf="!peliculas">Cargando</div>
+<div *ngIf="peliculas?.length===0">
+  <p>no hay peliculas para mostrar</p>
 </div>
-<div>
-    {{pelicula.fechaLanzamiento|date:"dd-MMMM-yyyy" |uppercase}}
-</div>
-<div>
-    {{pelicula.precio|currency}}
-</div>
+<div *ngIf="peliculas && peliculas.length>0">
+  <div *ngFor="let pelicula of peliculas; let index = index" class="pelicula-contenedor">
+    <div>Película {{ index }} : {{ pelicula.titulo }}</div>
+    <div>
+      {{ pelicula.fechaLanzamiento | date: "dd-MMMM-yyyy" | uppercase }}
+    </div>
+    <div>
+      {{ pelicula.precio | currency }}
+    </div>
+  </div>
 </div>
