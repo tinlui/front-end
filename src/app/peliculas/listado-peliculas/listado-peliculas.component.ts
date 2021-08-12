@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-listado-peliculas',
@@ -9,7 +9,11 @@ export class ListadoPeliculasComponent implements OnInit {
 
   constructor() { }
 
+  @Input()
+  peliculas:any;
+
   ngOnInit(): void {
+   
   }
 
 }

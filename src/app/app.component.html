@@ -1,18 +1,8 @@
-<p>Hola Mundo</p>
+<h2>En cines</h2>
+<app-listado-peliculas [peliculas]="peliculasEnCines"></app-listado-peliculas>
+
+<h2>Futuros Estrenos</h2>
+<app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>
 <router-outlet></router-outlet>
-<h2>Datos de la Película</h2>
-<div *ngIf="!peliculas">Cargando</div>
-<div *ngIf="peliculas?.length===0">
-  <p>no hay peliculas para mostrar</p>
-</div>
-<div *ngIf="peliculas && peliculas.length>0">
-  <div *ngFor="let pelicula of peliculas; let index = index" class="pelicula-contenedor">
-    <div>Película {{ index }} : {{ pelicula.titulo }}</div>
-    <div>
-      {{ pelicula.fechaLanzamiento | date: "dd-MMMM-yyyy" | uppercase }}
-    </div>
-    <div>
-      {{ pelicula.precio | currency }}
-    </div>
-  </div>
-</div>
+
+
