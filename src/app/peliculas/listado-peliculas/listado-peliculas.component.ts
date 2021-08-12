@@ -13,7 +13,9 @@ export class ListadoPeliculasComponent implements OnInit {
   peliculas:any;
 
   ngOnInit(): void {
-   
+  
   }
-
+  remover(indicePeliculas:number):void{
+      this.peliculas.splice(indicePeliculas,1);
+  }
 }

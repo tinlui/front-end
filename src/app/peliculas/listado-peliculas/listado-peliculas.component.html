@@ -1,10 +1,18 @@
-<div *ngIf="!peliculas">Cargando</div>
-<div *ngIf="peliculas?.length===0">
-  <p>no hay peliculas para mostrar</p>
-</div>
-<div *ngIf="peliculas && peliculas.length>0">
-  <div *ngFor="let pelicula of peliculas; let index = index" class="pelicula-contenedor">
-    <div>Película {{ index }} : {{ pelicula.titulo }}</div>
+<app-listado-generico [listado]="peliculas">
+    <ng-container vacio>
+        <div>Mensaje personalizado para contenido <b>vacio</b></div>
+    </ng-container>
+    <ng-container contenido>
+  <div
+    *ngFor="let pelicula of peliculas; let index = index"
+    class="pelicula-contenedor"
+  >
+    <div>
+      Película {{ index }} : {{ pelicula.titulo }}
+      <button style="margin-left: 1rem" (click)="remover(index)">
+        Remover
+      </button>
+    </div>
     <div>
       {{ pelicula.fechaLanzamiento | date: "dd-MMMM-yyyy" | uppercase }}
     </div>
@@ -12,4 +20,8 @@
       {{ pelicula.precio | currency }}
     </div>
   </div>
-</div>
+</ng-container>
+</app-listado-generico>
+
+<input type="file" name="" style="display: none" #cargador id="" />
+<button (click)="cargador.click()">Cargar Archivo</button>
