@@ -2,7 +2,7 @@
   <span #cargando>
     <ng-content select="[cargando]"> </ng-content>
   </span>
-  <span *ngIf="!cargando.innerHTML.trim()"> Cargando </span>
+  <span *ngIf="!cargando.innerHTML.trim()"> <mat-spinner></mat-spinner> </span>
 </div>
 <div *ngIf="listado?.length === 0">
   <span #vacio> <ng-content select="[vacio]"></ng-content> </span>

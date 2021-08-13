@@ -10,12 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 @NgModule({
   declarations: [
     AppComponent,
     ListadoPeliculasComponent,
     ListadoGenericoComponent,
-    MenuComponent
+    MenuComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
