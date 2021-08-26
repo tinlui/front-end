@@ -30,7 +30,7 @@ const routes: Routes = [
   {path:'peliculas/crear',component:CrearPeliculaComponent},
   {path:'peliculas/editar/:id',component:EditarPeliculaComponent},
 
-  {path: '**', component:LandingPageComponent}
+  {path: '**', redirectTo:''}
 ];
 
 @NgModule({
