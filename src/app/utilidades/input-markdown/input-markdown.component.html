@@ -1,1 +1,11 @@
-<p>input-markdown works!</p>
+<mat-tab-group>
+    <mat-tab label="Editar">
+<mat-form-field appearance="fill">
+<mat-label>Biografia</mat-label>
+<textarea matInput (input)="inputTextArea($event)"></textarea>
+</mat-form-field>
+    </mat-tab>
+    <mat-tab label="Preview">
+<markdown [data]="contenidoMarkdown" ngPreserveWhiteSpaces></markdown>
+    </mat-tab>
+</mat-tab-group>

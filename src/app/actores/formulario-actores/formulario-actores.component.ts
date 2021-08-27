@@ -15,7 +15,7 @@ export class FormularioActoresComponent implements OnInit {
   form: FormGroup;
 
   @Output()
-  submit: EventEmitter<actorCreacionDTO>= new EventEmitter<actorCreacionDTO>();
+  OnSubmit: EventEmitter<actorCreacionDTO>= new EventEmitter<actorCreacionDTO>();
 
   @Input()
   modelo:actorDTO;
@@ -30,6 +30,7 @@ export class FormularioActoresComponent implements OnInit {
       ],
       fechaNacimiento: '',
       foto:'',
+      biografia:'',
     });
     if(this.modelo!==undefined){
       this.form.patchValue(this.modelo);
@@ -40,7 +41,11 @@ export class FormularioActoresComponent implements OnInit {
 this.form.get('foto').setValue(file);
   }
 
+  cambioMarkdown(texto){
+    this.form.get('biografia').setValue(texto);
+  }
+
   onSubmit(){
-this.submit.emit(this.form.value);
+this.OnSubmit.emit(this.form.value);
   }
 }
