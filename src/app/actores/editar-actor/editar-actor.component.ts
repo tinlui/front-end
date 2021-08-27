@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { actorCreacionDTO } from '../actor';
+import { actorCreacionDTO, actorDTO } from '../actor';
 
 @Component({
   selector: 'app-editar-actor',
@@ -11,7 +11,7 @@ export class EditarActorComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
-modelo:actorCreacionDTO={nombre:'Felipe',fechaNacimiento:new Date()}
+modelo:actorDTO={nombre:'Felipe',fechaNacimiento:new Date(),foto:'https://m.media-amazon.com/images/M/MV5BNzZiNTEyNTItYjNhMS00YjI2LWIwMWQtZmYwYTRlNjMyZTJjXkEyXkFqcGdeQXVyMTExNzQzMDE0._V1_UX67_CR0,0,67,98_AL_.jpg'}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
@@ -19,6 +19,6 @@ modelo:actorCreacionDTO={nombre:'Felipe',fechaNacimiento:new Date()}
     })
   }
   guardarCambios(actor:actorCreacionDTO){
-    
+
   }
 }
