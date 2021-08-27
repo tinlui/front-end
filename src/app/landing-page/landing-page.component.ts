@@ -13,13 +13,13 @@ export class LandingPageComponent implements OnInit {
         titulo: 'Spider-Man Far From Home',
         fechaLanzamiento: new Date(),
         precio: 1400.99,
-        poster:'https://en.wikipedia.org/wiki/File:Spider-Man_Far_From_Home_poster.jpg'
+        poster:'https://m.media-amazon.com/images/M/MV5BNTk4ODQ1MzgzNl5BMl5BanBnXkFtZTgwMTMyMzM4MTI@._V1_UX67_CR0,0,67,98_AL_.jpg'
       },
       {
         titulo: 'Moana',
         fechaLanzamiento: new Date('2016-11-14'),
         precio: 300.99,
-        poster:'https://www.imdb.com/title/tt3521164/mediaviewer/rm618728448/?ref_=tt_ov_i'
+        poster:'https://m.media-amazon.com/images/M/MV5BMjI4MzU5NTExNF5BMl5BanBnXkFtZTgwNzY1MTEwMDI@._V1_UX67_CR0,0,67,98_AL_.jpg'
       },
     ];
    }
