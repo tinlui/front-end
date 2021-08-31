@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MarkdownModule} from 'ngx-markdown';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
+// import 'leaflet/dist/images/marker-shadow.png';
+// import 'leaflet/dist/images/marker-icon-2x.png';
 
 import { MaterialModule } from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
@@ -31,6 +33,7 @@ import { InputImgComponent } from './utilidades/input-img/input-img.component';
 import { InputMarkdownComponent } from './utilidades/input-markdown/input-markdown.component';
 import { FormularioCineComponent } from './cines/formulario-cine/formulario-cine.component';
 import { MapaComponent } from './utilidades/mapa/mapa.component';
+import { FormularioPeliculaComponent } from './peliculas/formulario-pelicula/formulario-pelicula.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +58,8 @@ import { MapaComponent } from './utilidades/mapa/mapa.component';
     InputImgComponent,
     InputMarkdownComponent,
     FormularioCineComponent,
-    MapaComponent
+    MapaComponent,
+    FormularioPeliculaComponent
   ],
   imports: [
     BrowserModule,
