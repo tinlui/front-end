@@ -24,13 +24,26 @@
     <h4>Seleccionar Poster</h4>
     <app-input-img 
     [urlImagenActual]="modelo?.poster"
-    (archivoSeleccionado)="archivoSeleccionado($event)"> </app-input-img>
+    (archivoSeleccionado)="archivoSeleccionado($event)"> 
+</app-input-img>
 
     <h4>Resumen Pelicula</h4>
     <app-input-markdown 
     [contenidoMarkdown]="modelo?.resumen"
     (changeMarkdown)="changeMarkdown($event)" 
-    [placeHolderTextarea]="'Resumen'"></app-input-markdown>
+    [placeHolderTextarea]="'Resumen'">
+</app-input-markdown>
+    
+    <h4>Seleccione los géneros</h4>
+    <app-selector-multiple
+    [Seleccionados]="generosSeleccionados"
+    [NoSeleccionados]="generosNoSeleccionados"></app-selector-multiple>
+
+    <h4>Seleccione los Cines</h4>
+    <app-selector-multiple
+    [Seleccionados]="cinesSeleccionados"
+    [NoSeleccionados]="cinesNoSeleccionados"></app-selector-multiple>
+
     <div>
         <button mat-button color="primary" [disabled]="form.invalid">
             Guardar Cambios

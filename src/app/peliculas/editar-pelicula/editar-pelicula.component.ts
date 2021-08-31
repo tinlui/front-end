@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PeliculaDTO } from '../pelicula';
+import { PeliculaDTO, PeliculaoCreacionDTO } from '../pelicula';
 
 @Component({
   selector: 'app-editar-pelicula',
@@ -14,5 +14,7 @@ export class EditarPeliculaComponent implements OnInit {
 fechaLanzamiento:new Date(),poster:'https://m.media-amazon.com/images/M/MV5BNTMxOGI4OGMtMTgwMy00NmFjLWIyOTUtYjQ0OGQ4Mjk0YjNjXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_UX67_CR0,0,67,98_AL_.jpg'}
   ngOnInit(): void {
   }
-
+  guardarCambios(pelicula : PeliculaoCreacionDTO){
+    console.log(pelicula)
+  }
 }

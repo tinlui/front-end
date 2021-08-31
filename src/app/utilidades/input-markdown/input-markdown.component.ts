@@ -21,10 +21,14 @@ contenidoMarkdown='';
 
   ngOnInit(): void {
   }
-
-  inputTextArea(evento):void{
-    const texto=evento.target.value;
+  OnchangeMarkdown(event){
+const texto=event.target.value;
 this.contenidoMarkdown=texto;
 this.changeMarkdown.emit(texto);
   }
+//   inputTextArea(evento):void{
+//     const texto=evento.target.value;
+// this.contenidoMarkdown=texto;
+// this.changeMarkdown.emit(texto);
+//   }
 }

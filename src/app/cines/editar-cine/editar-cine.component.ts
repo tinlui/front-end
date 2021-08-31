@@ -10,7 +10,7 @@ export class EditarCineComponent implements OnInit {
 
   constructor() { }
 
-  modelo:cineDTO={nombre:'Sambil',latitud:1,longitud:1};
+  modelo:cineDTO={nombre:'Sambil',latitud:	23.734100341797,longitud:-99.122299194336};
 
   ngOnInit(): void {
   }
