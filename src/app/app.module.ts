@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import {MarkdownModule} from 'ngx-markdown';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 // import 'leaflet/dist/images/marker-shadow.png';
 // import 'leaflet/dist/images/marker-icon-2x.png';
@@ -79,6 +80,7 @@ import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-er
     FormsModule,
     HttpClientModule,
     MarkdownModule.forRoot(),
+    SweetAlert2Module.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
