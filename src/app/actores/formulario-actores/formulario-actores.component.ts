@@ -20,6 +20,9 @@ export class FormularioActoresComponent implements OnInit {
   @Input()
   modelo:actorDTO;
 
+  @Input()
+  errores:string[]=[];
+  
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       nombre: [
