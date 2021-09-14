@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { actorPeliculaDTO } from 'src/app/actores/actor';
 import { MultipleSelectorModel } from 'src/app/utilidades/selector-multiple/MultipleSelectorModel';
-import { PeliculaDTO, PeliculaoCreacionDTO } from '../pelicula';
+import { PeliculaDTO, PeliculaCreacionDTO } from '../pelicula';
 
 @Component({
   selector: 'app-formulario-pelicula',
@@ -18,7 +18,7 @@ export class FormularioPeliculaComponent implements OnInit {
   @Input()
   errores:string[]=[];
   @Output()
-  OnSubmit: EventEmitter<PeliculaoCreacionDTO> = new EventEmitter<PeliculaoCreacionDTO>();
+  OnSubmit: EventEmitter<PeliculaCreacionDTO> = new EventEmitter<PeliculaCreacionDTO>();
 
   @Input()
   modelo: PeliculaDTO;
@@ -26,17 +26,22 @@ export class FormularioPeliculaComponent implements OnInit {
   @Input()
   generosNoSeleccionados: MultipleSelectorModel[] ;
   
+  @Input()
   generosSeleccionados: MultipleSelectorModel[] = [];
   
   @Input()
   cinesNoSeleccionados:MultipleSelectorModel[];
   
+  @Input()
   cinesSeleccionados: MultipleSelectorModel[] = [];
 
   @Input()
   actoresSeleccionados:actorPeliculaDTO[]=[];
 
+  imagenCambida=false;
+
   ngOnInit(): void {
+    
     this.form = this.formBuilder.group({
       titulo: [
         '',
@@ -60,7 +65,7 @@ export class FormularioPeliculaComponent implements OnInit {
   guardarCambios() {
 
     const generosIds = this.generosSeleccionados.map((val) => val.llave);
-  
+
     this.form.get('generosIds').setValue(generosIds);
 
     const cinesIds = this.cinesSeleccionados.map((val) => val.llave);
@@ -71,10 +76,15 @@ export class FormularioPeliculaComponent implements OnInit {
     });
     this.form.get('actores').setValue(actores);
 
+    if(!this.imagenCambida){
+      this.form.patchValue({'poster':null});
+    }
+
     this.OnSubmit.emit(this.form.value);
   }
   archivoSeleccionado(archivo: File) {
     this.form.get('poster').setValue(archivo);
+    this.imagenCambida=true;
   }
 
   changeMarkdown(texto) {

@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { generoDTO } from 'src/app/generos/genero';
+import { GenerosService } from 'src/app/generos/generos.service';
+import { PeliculasService } from '../peliculas.service';
+import { PeliculaDTO } from '../pelicula';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-filtro-peliculas',
@@ -12,43 +17,19 @@ export class FiltroPeliculasComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private location: Location,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private generosService:GenerosService,
+    private peliculasService: PeliculasService
   ) {}
 
   form: FormGroup;
 
-  generos = [
-    { id: 1, nombre: 'Drama' },
-    { id: 2, nombre: 'Acción' },
-    { id: 3, nombre: 'Comedia' },
-  ];
-  peliculas = [
-    {
-      titulo: 'Spider-Man: Far From Home',
-      enCines: false,
-      proximosEstrenos: true,
-      generos: [1, 2],
-      poster:
-        'https://m.media-amazon.com/images/M/MV5BNTMxOGI4OGMtMTgwMy00NmFjLWIyOTUtYjQ0OGQ4Mjk0YjNjXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_UX67_CR0,0,67,98_AL_.jpg',
-    },
-    {
-      titulo: 'Moana',
-      enCines: true,
-      proximosEstrenos: false,
-      generos: [3],
-      poster:
-        'https://m.media-amazon.com/images/M/MV5BMjI4MzU5NTExNF5BMl5BanBnXkFtZTgwNzY1MTEwMDI@._V1_UX67_CR0,0,67,98_AL_.jpg',
-    },
-    {
-      titulo: 'Inception',
-      enCines: false,
-      proximosEstrenos: false,
-      generos: [1, 3],
-      poster:
-        'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_UX67_CR0,0,67,98_AL_.jpg',
-    },
-  ];
-  peliculasOriginal = this.peliculas;
+  generos :generoDTO[]=[];
+  paginaActual=1;
+  cantidadElementosAMostrar=10;
+  cantidadElementos;
+  peliculas:PeliculaDTO[];
+  
 
   formularioOriginal = {
     titulo: '',
@@ -58,16 +39,23 @@ export class FiltroPeliculasComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group(this.formularioOriginal);
-  //leer los valores que esten en la url
-    this.leerValoresURL();
-    this.buscarPeliculas(this.form.value);
-    //cambios en el formulario
-    this.form.valueChanges.subscribe((valores) => {
-      this.peliculas = this.peliculasOriginal;
-      this.buscarPeliculas(valores);
-      this.escribirParametrosBusquedaEnURL();
+    this.generosService.obtenerTodos()
+    .subscribe(generos=>{
+      console.log(generos)
+      this.generos=generos;
+
+      this.form = this.formBuilder.group(this.formularioOriginal);
+      //leer los valores que esten en la url
+        this.leerValoresURL();
+        this.buscarPeliculas(this.form.value);
+        //cambios en el formulario
+        this.form.valueChanges.subscribe((valores) => {
+     
+          this.buscarPeliculas(valores);
+          this.escribirParametrosBusquedaEnURL();
+        });
     });
+  
   }
 
   private leerValoresURL() {
@@ -119,30 +107,22 @@ export class FiltroPeliculasComponent implements OnInit {
   }
 
   buscarPeliculas(valores: any) {
-    if (valores.titulo) {
-      this.peliculas = this.peliculas.filter(
-        (pelicula) => pelicula.titulo.indexOf(valores.titulo) !== -1
-      );
-    }
-
-    if (valores.generoId) {
-      this.peliculas = this.peliculas.filter(
-        (pelicula) => pelicula.generos.indexOf(valores.generoId) !== -1
-      );
-    }
-
-    if (valores.proximosEstrenos) {
-      this.peliculas = this.peliculas.filter(
-        (pelicula) => pelicula.proximosEstrenos
-      );
-    }
-
-    if (valores.enCines) {
-      this.peliculas = this.peliculas.filter((pelicula) => pelicula.enCines);
-    }
+    valores.pagina=this.paginaActual;
+    valores.recordsPorPagina=this.cantidadElementosAMostrar;
+   this.peliculasService.filtrar(valores).subscribe(response=>{
+     this.peliculas=response.body;
+     this.escribirParametrosBusquedaEnURL();
+     this.cantidadElementos=response.headers.get('cantidadTotalRegistros');
+   })
   }
 
   limpiar() {
     this.form.patchValue(this.formularioOriginal);
   }
+
+  paginatorUpdate(datos:PageEvent){
+    this.paginaActual=datos.pageIndex+1;
+    this.cantidadElementosAMostrar=datos.pageSize;
+    this.buscarPeliculas(this.form.value);
+      }
 }

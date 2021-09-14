@@ -17,6 +17,7 @@ export class SelectorMultipleComponent implements OnInit {
   NoSeleccionados: MultipleSelectorModel[]=[];
 
   ngOnInit(): void {
+    
   }
 
   seleccionar(item: MultipleSelectorModel,index:number){

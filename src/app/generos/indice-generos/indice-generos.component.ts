@@ -22,7 +22,7 @@ cantidadRegistrosAMostrar=10;
   }
 
   cargarRegistros(pagina: number, cantidadElementosAMostrar){
-    this.generosService.obtenerTodos(pagina,cantidadElementosAMostrar).subscribe(
+    this.generosService.obtenerPaginado(pagina,cantidadElementosAMostrar).subscribe(
       (respuesta: HttpResponse<generoDTO[]>) => {
         this.generos = respuesta.body;
         this.cantidadTotalRegistros= respuesta.headers.get('cantidadTotalRegistros');

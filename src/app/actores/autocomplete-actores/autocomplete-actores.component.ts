@@ -25,6 +25,7 @@ export class AutocompleteActoresComponent implements OnInit {
   @ViewChild(MatTable) table:MatTable<any>;
 
   ngOnInit(): void {
+    
     this.control.valueChanges.subscribe((nombre) => {
       this.actoresService.obtenerPorNombre(nombre).subscribe(actores=>{
 this.actoresAMostrar=actores;
@@ -34,7 +35,7 @@ this.actoresAMostrar=actores;
   }
 
   optionSelected(event: MatAutocompleteSelectedEvent) {
-    console.log(event.option.value);
+    
     this.actoresSeleccionados.push(event.option.value);
     this.control.patchValue('');
     if(this.table!==undefined){
